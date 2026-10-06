@@ -5,22 +5,36 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/static/css/style.css">
 	<script src="/static/js/htmx.js"></script>
+	<script src="/static/js/navbutton.js" defer></script>
 	<title>Nyatt's blog</title>
 </head>
 <body>
 	<header>
-		<div id="logo">
-			<a href="index.html" class="logo">
-				<img src="/static/images/logo.png" alt="Nyatt's blog">
-				<span><strong>Nyatt's Blog</strong></span>
-			</a>
-		</div>
-		
-		<nav>
+		<a href="/" class="logo">
+			<img src="/static/images/logo.png" alt="Nyatt's blog">
+			<span><strong>Nyatt's Blog</strong></span>
+		</a>
+
+		<!--
+			Responsive navigation button:
+			- id="menu-toggle" lets navbutton.js find and control this button.
+			- class="menu-toggle" lets CSS style it as a hamburger button.
+			- type="button" prevents accidental form submission.
+			- aria-controls identifies the navigation controlled by this button.
+			- aria-expanded starts as false and changes when the menu opens.
+			- aria-label describes the button for screen readers.
+			- The ☰ character is the visible hamburger icon.
+		-->
+		<button id="menu-toggle" class="menu-toggle" type="button"
+			aria-controls="main-nav" aria-expanded="false" aria-label="Open navigation">
+			☰
+		</button>
+
+		<nav id="main-nav">
 			<a href="/">
 				Home
 			</a>
-			
+
 			<a href="/about"
 			   hx-get="/about"
 			   hx-target="#content"
@@ -28,16 +42,16 @@
 			   hx-push-url="true">
 				About
 			</a>
-			
+
 			<a href="/posts"
 			   hx-get="/posts"
 			   hx-target="#content"
-			   hx-swap="innerHTML"
-			   hx-push-url="true">
+				hx-swap="innerHTML"
+				hx-push-url="true">
 				Posts
 			</a>
 		</nav>
-		</header>
+	</header>
 		
 	<div id = "content">
 	
