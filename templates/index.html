@@ -1,0 +1,48 @@
+<!Doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/static/css/style.css">
+	<script src="/static/js/htmx.js"></script>
+	<title>Nyatt's blog</title>
+</head>
+<body>
+	<header>
+		<div id="logo">
+			<a href="index.html" class="logo">
+				<img src="/static/images/logo.png" alt="Nyatt's blog">
+				<span><strong>Nyatt's Blog</strong></span>
+			</a>
+		</div>
+		
+		<nav>
+			<a href="/">
+				Home
+			</a>
+			
+			<a href="/about"
+			   hx-get="/about"
+			   hx-target="#content"
+			   hx-swap="innerHTML"
+			   hx-push-url="true">
+				About
+			</a>
+			
+			<a href="/posts"
+			   hx-get="/posts"
+			   hx-target="#content"
+			   hx-swap="innerHTML"
+			   hx-push-url="true">
+				Posts
+			</a>
+		</nav>
+		</header>
+		
+	<div id = "content">
+	
+	</div>
+	
+
+</body>
+</html>
