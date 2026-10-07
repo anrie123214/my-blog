@@ -1,4 +1,5 @@
-<!Doctype html>
+{{define "layout"}}
+<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -32,7 +33,7 @@
 
 		<nav id="main-nav">
 			<a href="/">
-				Home
+				<strong>Home</strong>
 			</a>
 
 			<a href="/about"
@@ -40,7 +41,7 @@
 			   hx-target="#content"
 			   hx-swap="innerHTML"
 			   hx-push-url="true">
-				About
+				<strong>About</strong>
 			</a>
 
 			<a href="/posts"
@@ -48,15 +49,15 @@
 			   hx-target="#content"
 				hx-swap="innerHTML"
 				hx-push-url="true">
-				Posts
+				<strong>Posts</strong>
 			</a>
 		</nav>
 	</header>
 		
-	<div id = "content">
-	
+	<div id="content">
+		{{template "content" .}}
 	</div>
-	
 
 </body>
 </html>
+{{end}}

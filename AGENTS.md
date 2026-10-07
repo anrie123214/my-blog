@@ -35,6 +35,8 @@ Use Go’s standard `testing` package. Name tests `TestThing` and keep them focu
 
 Existing commits use short, informal descriptions. New commits should use a concise imperative subject, for example, `Improve header layout`. Keep unrelated changes separate.
 
+When the user explicitly requests a commit or push, run `git add .` to stage unignored changes, then review the staged diff and flag any unrelated changes before committing.
+
 Pull requests should explain the change, list verification commands and results, and include screenshots for visible HTML/CSS changes. Mention any route, configuration, or deployment considerations.
 
 ## Security & Configuration Tips

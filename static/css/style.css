@@ -19,7 +19,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #764edd;
+    background: #ee0000;
     border: 1px solid #000000;
 }
 
@@ -65,7 +65,7 @@ nav {
 nav a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 nav a:hover {
@@ -74,26 +74,45 @@ nav a:hover {
 
 /* Responsive navigation */
 @media (max-width: 600px) {
-    header {
-        flex-wrap: wrap;
-        padding: 16px 20px;
+    header nav {
+        position: fixed;
+        inset: 0 0 0 auto;
+        width: min(80vw, 320px);
+        padding: 80px 24px 24px;
+        flex-direction: column;
+        gap: 0;
+
+        background: red;
+        backdrop-filter: blur(18px);
+
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    header nav.open {
+        transform: translateX(0);
     }
 
     .menu-toggle {
         display: block;
+        z-index: 1001;
     }
 
-    header nav {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        gap: 16px;
-        padding-top: 20px;
+    .menu-close {
+        display: block;
+        align-self: flex-end;
+        font-size: 28px;
+        background: none;
+        border: 0;
+        color: red;
     }
 
-    header nav.open {
-        display: flex;
+    header nav a {
+        padding: 16px 0;
+        border-bottom: 1px solid white;
     }
+
 }
 
 
