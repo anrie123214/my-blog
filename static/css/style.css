@@ -1,37 +1,77 @@
-/* Reset */
+/* ================================================================
+   RESET
+   ================================================================ */
+
+/* Make width and height include padding and borders. */
 * {
     box-sizing: border-box;
 }
 
+
+/* ================================================================
+   THEME COLORS
+   ================================================================ */
+
+/* Default light-mode colors. */
+:root {
+    --page-background: #ffffff;
+    --page-text: #222222;
+    --header-background: #20c9fd;
+    --menu-background: #20c9fd;
+    --menu-border: #ffffff;
+}
+
+/* These values become active when JavaScript adds .dark-mode to <body>. */
+body.dark-mode {
+    --page-background: #121212;
+    --page-text: #eeeeee;
+    --header-background: #ee0000;
+    --menu-background: #ee0000;
+    --menu-border: #ffffff;
+}
+
+
+/* ================================================================
+   PAGE BASE
+   ================================================================ */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    color: #222;
-    background: #fff;
+    color: var(--page-text);
+    background: var(--page-background);
 }
 
-/* Header */
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+
 header {
     width: 100%;
     margin: 0 auto;
-    padding: 25px 32px;
+    padding: 16px 32px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #ee0000;
-    border: 1px solid #000000;
+
+    background: var(--header-background);
+    border: 1px solid var(--header-border);
 }
 
-/* Logo */
+
+/* ================================================================
+   LOGO
+   ================================================================ */
 
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
 
-    text-decoration: none;
     color: #ffffff;
+    text-decoration: none;
 }
 
 .logo img {
@@ -44,15 +84,36 @@ header {
     font-size: 26px;
     font-weight: bold;
 }
-.logo:hover {
-    color: #2cb7f3;
-}
-/* Navigation */
+
+
+
+
+/* ================================================================
+   DESKTOP NAVIGATION
+   ================================================================ */
+
 nav {
     display: flex;
-    gap: 40px;
+    gap: 12px;
 }
 
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 24px;
+}
+
+nav a:hover {
+    color: #000c12;
+}
+
+
+/* ================================================================
+   NAVIGATION AND THEME BUTTONS
+   ================================================================ */
+
+/* Hidden on desktop; displayed as the hamburger on small screens. */
 .menu-toggle {
     display: none;
     color: #ffffff;
@@ -62,27 +123,42 @@ nav {
     cursor: pointer;
 }
 
-nav a {
+/* Button that switches between light and dark mode. */
+.theme-toggle {
+    padding: 12px 0;
     color: #ffffff;
-    text-decoration: none;
-    font-size: 20px;
+    background: transparent;
+    border: 0;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
 }
 
-nav a:hover {
-    color: #2cb7f3;
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    vertical-align: middle;
 }
 
-/* Responsive navigation */
+
+/* ================================================================
+   MOBILE NAVIGATION DRAWER
+   ================================================================ */
+
 @media (max-width: 600px) {
+    /* The navigation starts off-screen on the right. */
     header nav {
         position: fixed;
         inset: 0 0 0 auto;
         width: min(80vw, 320px);
         padding: 80px 24px 24px;
+
+        display: flex;
         flex-direction: column;
         gap: 0;
 
-        background: red;
+        background: var(--menu-background);
         backdrop-filter: blur(18px);
 
         transform: translateX(100%);
@@ -90,33 +166,39 @@ nav a:hover {
         z-index: 1000;
     }
 
+    /* JavaScript adds .open to slide the drawer into view. */
     header nav.open {
         transform: translateX(0);
     }
 
+    /* Keep the hamburger above the drawer. */
     .menu-toggle {
         display: block;
         z-index: 1001;
     }
 
+    /* Optional close button inside the drawer. */
     .menu-close {
         display: block;
         align-self: flex-end;
         font-size: 28px;
         background: none;
         border: 0;
-        color: red;
+        color: #ffffff;
     }
 
+    /* Separate each mobile navigation option. */
     header nav a {
         padding: 16px 0;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid var(--menu-border);
     }
-
 }
 
 
-/* Main content */
+/* ================================================================
+   MAIN CONTENT
+   ================================================================ */
+
 main {
     max-width: 900px;
     margin: 0 auto;

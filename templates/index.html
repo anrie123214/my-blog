@@ -1,5 +1,5 @@
 {{define "layout"}}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -31,7 +31,7 @@
 			☰
 		</button>
 
-		<nav id="main-nav">
+		<nav id="main-nav" class="main-nav">
 			<a href="/">
 				<strong>Home</strong>
 			</a>
@@ -51,6 +51,26 @@
 				hx-push-url="true">
 				<strong>Posts</strong>
 			</a>
+
+			<button id="theme-toggle" class="theme-toggle" type="button"
+				aria-label="Switch to dark mode">
+				<span id="theme-icon" aria-hidden="true">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round">
+						<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"
+							fill="currentColor" fill-opacity="0.2"></path>
+					</svg>
+				</span>
+				<span id="theme-label"><strong>Dark mode</strong></span>
+			</button>
 		</nav>
 	</header>
 		
