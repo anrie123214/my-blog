@@ -32,7 +32,11 @@
 		</button>
 
 		<nav id="main-nav" class="main-nav">
-			<a href="/">
+			<a href="/"
+			   hx-get="/"
+			   hx-target="#content"
+			   hx-swap="innerHTML"
+			   hx-push-url="true">
 				<strong>Home</strong>
 			</a>
 
@@ -74,9 +78,9 @@
 		</nav>
 	</header>
 		
-	<div id="content">
+	<main id="content">
 		{{template "content" .}}
-	</div>
+	</main>
 
 </body>
 </html>
