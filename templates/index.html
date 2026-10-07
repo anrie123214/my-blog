@@ -10,7 +10,7 @@
 	<title>Nyatt's blog</title>
 </head>
 <body>
-	<header>
+	<header class="site-header">
 		<a href="/" class="logo">
 			<img src="/static/images/logo.png" alt="Nyatt's blog">
 			<span><strong>Nyatt's Blog</strong></span>
@@ -32,6 +32,9 @@
 		</button>
 
 		<nav id="main-nav" class="main-nav">
+			<button id="menu-close" class="menu-close" type="button"
+				aria-label="Close navigation">×</button>
+
 			<a href="/"
 			   hx-get="/"
 			   hx-target="#content"

@@ -1,17 +1,42 @@
 // Find the hamburger button and the navigation menu it controls.
 const menuToggle = document.getElementById("menu-toggle");
 const mainNav = document.getElementById("main-nav");
+const menuClose = document.getElementById("menu-close");
 
-// Toggle the mobile navigation when the hamburger button is clicked.
-menuToggle.addEventListener("click", () => {
-    const isOpen = mainNav.classList.toggle("open");
+// Keep the menu state, accessibility attributes, and page scrolling synchronized.
+function setMenuOpen(isOpen) {
+    mainNav.classList.toggle("open", isOpen);
+    document.body.classList.toggle("menu-open", isOpen);
 
-    // Keep the accessibility state and label synchronized with the menu.
     menuToggle.setAttribute("aria-expanded", String(isOpen));
     menuToggle.setAttribute(
         "aria-label",
         isOpen ? "Close navigation" : "Open navigation"
     );
+}
+
+// Toggle the mobile navigation when the hamburger button is clicked.
+menuToggle.addEventListener("click", () => {
+    setMenuOpen(!mainNav.classList.contains("open"));
+});
+
+// Close the drawer when its white close button is clicked.
+menuClose.addEventListener("click", () => setMenuOpen(false));
+
+// Close the drawer after choosing a page from the mobile navigation.
+mainNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+});
+
+// Close the mobile menu when clicking outside the drawer or menu button.
+document.addEventListener("click", (event) => {
+    const clickedInsideMenu = mainNav.contains(event.target);
+    const clickedMenuButton = menuToggle.contains(event.target);
+    const menuIsOpen = mainNav.classList.contains("open");
+
+    if (menuIsOpen && !clickedInsideMenu && !clickedMenuButton) {
+        setMenuOpen(false);
+    }
 });
 //toggle dark mode
 const themeToggle = document.getElementById("theme-toggle");
@@ -61,3 +86,21 @@ themeToggle.addEventListener("click", () => {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
     updateThemeButton();
 });
+
+// Track the previous scroll position to detect the user's scroll direction.
+let lastScrollTop = 0;
+const header = document.querySelector(".site-header");
+
+window.addEventListener("scroll", () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > lastScrollTop) {
+        // Scrolling down: hide the header.
+        header.classList.add("header-hidden");
+    } else if (currentScroll < lastScrollTop) {
+        // Scrolling up: show the header.
+        header.classList.remove("header-hidden");
+    }
+
+    lastScrollTop = currentScroll;
+}, { passive: true });

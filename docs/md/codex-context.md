@@ -22,6 +22,8 @@ This is a small Go web app served at `http://localhost:8080`.
 
 Normal requests receive the full layout. Requests with `HX-Request: true` receive only the page content, which replaces `main#content`. Navigation uses `hx-push-url` so direct links and browser refreshes continue to work.
 
+The `.site-header` is sticky and hides while scrolling down, then returns while scrolling up. The mobile drawer locks page scrolling while open, includes a white close button, and closes when a link or outside area is clicked.
+
 ## Content direction
 
 - Home should recap the newest article, inspired by the Podman blog format.
@@ -35,6 +37,7 @@ Normal requests receive the full layout. Requests with `HX-Request: true` receiv
 - Keep Go files at the repository root while the app remains small; do not add `src/` yet.
 - Store articles in `docs/blogs/` and render them with `gomarkdown/markdown`.
 - Keep JavaScript minimal and use HTMX for page navigation.
+- Keep `.article-header` separate from the sticky `.site-header`.
 - Go tests live beside the code in `*_test.go` files.
 - Run `gofmt`, `go build .`, and `go test ./...` after Go changes.
 - Ask for approval before editing, renaming, deleting, staging, or committing files. Read-only commands are okay without approval.

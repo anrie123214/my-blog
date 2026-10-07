@@ -59,10 +59,15 @@ body {
    HEADER
    ================================================================ */
 
-header {
+.site-header {
     width: 100%;
     margin: 0 auto;
     padding: 16px 32px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
 
     display: flex;
     align-items: center;
@@ -70,6 +75,10 @@ header {
 
     background: var(--header-background);
     border: 1px solid var(--header-border);
+}
+
+.site-header.header-hidden {
+    transform: translateY(-100%);
 }
 
 
@@ -153,14 +162,23 @@ nav a:hover {
     vertical-align: middle;
 }
 
+.menu-close {
+    display: none;
+}
+
 
 /* ================================================================
    MOBILE NAVIGATION DRAWER
    ================================================================ */
 
 @media (max-width: 800px) {
+    /* Prevent the page behind the open drawer from scrolling. */
+    body.menu-open {
+        overflow: hidden;
+    }
+
     /* The navigation starts off-screen on the right. */
-    header nav {
+    .site-header nav {
         position: fixed;
         inset: 0 0 0 auto;
         width: min(80vw, 320px);
@@ -179,7 +197,7 @@ nav a:hover {
     }
 
     /* JavaScript adds .open to slide the drawer into view. */
-    header nav.open {
+    .site-header nav.open {
         transform: translateX(0);
     }
 
@@ -192,15 +210,20 @@ nav a:hover {
     /* Optional close button inside the drawer. */
     .menu-close {
         display: block;
-        align-self: flex-end;
+        position: absolute;
+        top: 20px;
+        left: 24px;
+        padding: 0;
         font-size: 28px;
+        line-height: 1;
         background: none;
         border: 0;
         color: #ffffff;
+        cursor: pointer;
     }
 
     /* Separate each mobile navigation option. */
-    header nav a {
+    .site-header nav a {
         padding: 16px 0;
         border-bottom: 1px solid var(--menu-border);
     }
