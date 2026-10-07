@@ -52,6 +52,7 @@ body {
     font-family: Arial, sans-serif;
     color: var(--page-text);
     background: var(--page-background);
+    
 }
 
 
@@ -67,7 +68,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: transform 0.3s ease-in-out;
+    transition: top 0.3s ease-in-out;
 
     display: flex;
     align-items: center;
@@ -78,7 +79,7 @@ body {
 }
 
 .site-header.header-hidden {
-    transform: translateY(-100%);
+    top: -100px;
 }
 
 
