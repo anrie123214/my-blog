@@ -1,12 +1,59 @@
 {{define "content"}}
-<article class="article">
-	<header class="article-header">
-		<p class="article-category">{{.Category}}</p>
-		<p class="article-meta">{{.Date}} //// {{.Author}}</p>
-	</header>
+<section class="home-page">
+	<section class="home-hero" aria-labelledby="home-title">
+		<img class="home-logo" src="/static/images/logo.png" alt="Nyatt's Blog logo">
 
-	<div class="article-content">
-		{{.Markdown}}
-	</div>
-</article>
+		<div class="home-copy">
+
+			<h1 id="home-title">Welcome to my blog!</h1>
+			<p class="home-lead">Hope you enjoy your time here.</p>
+		</div>
+
+		<a class="home-scroll-link" href="#featured-posts">
+			<span>Scroll down</span>
+			<span class="home-scroll-arrow" aria-hidden="true">↓</span>
+		</a>
+	</section>
+
+	<section id="featured-posts" class="home-featured" aria-labelledby="featured-posts-title">
+		<div class="home-section-heading">
+			<p class="home-kicker">Keep exploring</p>
+			<h2 id="featured-posts-title">Featured posts</h2>
+			<p>Some notes and stories will appear here soon.</p>
+		</div>
+
+		<div class="home-post-grid">
+			{{range .}}
+			<article class="home-post-card">
+				<p class="home-post-label">{{.Category}}</p>
+				<h3>
+					<a href="/posts/{{.Slug}}"
+						hx-get="/posts/{{.Slug}}"
+						hx-target="#content"
+						hx-swap="innerHTML"
+						hx-push-url="true">{{.Title}}</a>
+				</h3>
+				<p class="home-post-meta">{{.Date}} //// {{.Author}}</p>
+				<a class="home-post-link" href="/posts/{{.Slug}}"
+					hx-get="/posts/{{.Slug}}"
+					hx-target="#content"
+					hx-swap="innerHTML"
+					hx-push-url="true">Read article <span aria-hidden="true">→</span></a>
+			</article>
+			{{else}}
+			<p>No featured posts have been published yet.</p>
+			{{end}}
+
+			<article class="home-post-card home-post-card-more">
+				<p class="home-post-label">Explore more</p>
+				<h3>Don't be shy!</h3>
+				<a class="home-post-link" href="/posts"
+					hx-get="/posts"
+					hx-target="#content"
+					hx-swap="innerHTML"
+					hx-push-url="true">Read More <span aria-hidden="true">→</span></a>
+			</article>
+		</div>
+	</section>
+</section>
 {{end}}

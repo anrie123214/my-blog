@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"html/template"
 	"os"
+	"path/filepath"
+	"sort"
 	"strings"
 )
 
@@ -13,6 +15,7 @@ type pageData struct {
 	Category string
 	Date     string
 	Author   string
+	Slug     string
 }
 
 type postMetadata struct {
@@ -95,5 +98,40 @@ func loadPost(path string) (pageData, error) {
 		Category: metadata.Category,
 		Date:     metadata.Date,
 		Author:   metadata.Author,
+		Slug:     metadata.Slug,
 	}, nil
+}
+
+func loadPosts(directory string) ([]pageData, error) {
+	paths, err := filepath.Glob(filepath.Join(directory, "*.md"))
+	if err != nil {
+		return nil, fmt.Errorf("find posts in %q: %w", directory, err)
+	}
+	if len(paths) == 0 {
+		return nil, fmt.Errorf("no Markdown posts found in %q", directory)
+	}
+
+	posts := make([]pageData, 0, len(paths))
+	slugs := make(map[string]string, len(paths))
+	for _, path := range paths {
+		post, err := loadPost(path)
+		if err != nil {
+			return nil, err
+		}
+		if previousPath, exists := slugs[post.Slug]; exists {
+			return nil, fmt.Errorf("duplicate post slug %q in %q and %q", post.Slug, previousPath, path)
+		}
+
+		slugs[post.Slug] = path
+		posts = append(posts, post)
+	}
+
+	sort.SliceStable(posts, func(i, j int) bool {
+		if posts[i].Date == posts[j].Date {
+			return posts[i].Title < posts[j].Title
+		}
+		return posts[i].Date > posts[j].Date
+	})
+
+	return posts, nil
 }

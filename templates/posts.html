@@ -1,6 +1,32 @@
 {{define "content"}}
-<section class="page">
-	<h1><strong>Posts</strong></h1>
-	<p>Posts will appear here.</p>
+<section class="posts-page" aria-labelledby="posts-title">
+	<header class="posts-heading">
+		<p class="home-kicker">The archive</p>
+		<h1 id="posts-title">Posts</h1>
+		<p>Notes on learning, building, and understanding useful technology.</p>
+	</header>
+
+	<div class="post-list">
+		{{range .}}
+		<article class="post-list-item">
+			<div>
+				<p class="post-list-category">{{.Category}}</p>
+				<h2><a href="/posts/{{.Slug}}"
+					hx-get="/posts/{{.Slug}}"
+					hx-target="#content"
+					hx-swap="innerHTML"
+					hx-push-url="true">{{.Title}}</a></h2>
+				<p class="post-list-meta">{{.Date}} //// {{.Author}}</p>
+			</div>
+			<a class="post-list-link" href="/posts/{{.Slug}}"
+				hx-get="/posts/{{.Slug}}"
+				hx-target="#content"
+				hx-swap="innerHTML"
+				hx-push-url="true">Read article <span aria-hidden="true">→</span></a>
+		</article>
+		{{else}}
+		<p>No posts have been published yet.</p>
+		{{end}}
+	</div>
 </section>
 {{end}}

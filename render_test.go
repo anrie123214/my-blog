@@ -78,10 +78,12 @@ func TestHomeRendersFullLayout(t *testing.T) {
 	for _, want := range []string{
 		"<!DOCTYPE html>",
 		"<main id=\"content\">",
-		"class=\"article\"",
-		"Containers on Linux",
-		`class="article-category">Containers`,
-		`class="article-meta">2026-10-07 //// Nyatt`,
+		"class=\"home-page\"",
+		"Welcome to my blog!",
+		"Featured posts",
+		"Containers on Linux: Isolation Mechanism - Part 2",
+		"/posts/container-isolation-p2",
+		"Read More",
 	} {
 		if !strings.Contains(body, want) {
 			t.Errorf("full page did not contain %q", want)
@@ -104,7 +106,7 @@ func TestHomeHTMXRendersContentOnly(t *testing.T) {
 	if strings.Contains(body, "<!DOCTYPE html>") {
 		t.Error("HTMX response unexpectedly contained the full page layout")
 	}
-	for _, want := range []string{"class=\"article\"", "Containers on Linux"} {
+	for _, want := range []string{"class=\"home-page\"", "Welcome to my blog!"} {
 		if !strings.Contains(body, want) {
 			t.Errorf("HTMX response did not contain %q", want)
 		}
@@ -126,6 +128,54 @@ func TestStaticPagesRenderFullLayout(t *testing.T) {
 				t.Error("response did not contain the full page layout")
 			}
 		})
+	}
+}
+
+func TestPostsRenderCollection(t *testing.T) {
+	recorder := httptest.NewRecorder()
+	request := httptest.NewRequest(http.MethodGet, "/posts", nil)
+
+	newMux().ServeHTTP(recorder, request)
+
+	if recorder.Code != http.StatusOK {
+		t.Fatalf("expected status %d, got %d: %s", http.StatusOK, recorder.Code, recorder.Body)
+	}
+
+	body := recorder.Body.String()
+	for _, want := range []string{
+		"The archive",
+		"Containers on Linux: Isolation Mechanism - Part 2",
+		"Containers on Linux: Isolation Mechanism - Part 1",
+		"/posts/container-isolation-p2",
+	} {
+		if !strings.Contains(body, want) {
+			t.Errorf("posts page did not contain %q", want)
+		}
+	}
+}
+
+func TestArticleRouteRendersPost(t *testing.T) {
+	recorder := httptest.NewRecorder()
+	request := httptest.NewRequest(http.MethodGet, "/posts/container-isolation-p1", nil)
+
+	newMux().ServeHTTP(recorder, request)
+
+	if recorder.Code != http.StatusOK {
+		t.Fatalf("expected status %d, got %d: %s", http.StatusOK, recorder.Code, recorder.Body)
+	}
+	if !strings.Contains(recorder.Body.String(), "Namespaces control what a process can see") {
+		t.Error("article route did not render the requested post")
+	}
+}
+
+func TestUnknownArticleReturnsNotFound(t *testing.T) {
+	recorder := httptest.NewRecorder()
+	request := httptest.NewRequest(http.MethodGet, "/posts/not-a-real-post", nil)
+
+	newMux().ServeHTTP(recorder, request)
+
+	if recorder.Code != http.StatusNotFound {
+		t.Fatalf("expected status %d, got %d", http.StatusNotFound, recorder.Code)
 	}
 }
 
