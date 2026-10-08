@@ -1,5 +1,5 @@
 ---
-title: Containers on Linux: Part 1 - Isolation Mechanism
+title: Containers on Linux: Isolation Mechanism - Part 1
 date: 2026-10-07
 category: Containers
 author: Nyatt

@@ -1,4 +1,11 @@
-# **Part 2: Docker, Privileges, and User Namespace Mapping** 
+---
+title: Containers on Linux: Isolation Mechanism - Part 2  
+date: 2026-10-08
+category: Containers
+author: Nyatt
+slug: namespaces-and-cgroups
+---
+**Part 2: Docker, Privileges, and User Namespace Mapping** 
 
 ## **What sits behind Docker Engine?** 
 
