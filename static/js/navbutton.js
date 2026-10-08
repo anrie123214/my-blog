@@ -38,6 +38,7 @@ document.addEventListener("click", (event) => {
         setMenuOpen(false);
     }
 });
+
 //toggle dark mode
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.getElementById("theme-icon");

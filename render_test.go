@@ -28,6 +28,42 @@ func TestRenderMarkdown(t *testing.T) {
 	}
 }
 
+func TestParseFrontMatter(t *testing.T) {
+	source := []byte("---\ntitle: Test post\ndate: 2026-10-08\ncategory: Testing\nauthor: Nyatt\nslug: test-post\n---\n\n# Test heading")
+
+	metadata, body, err := parseFrontMatter(source)
+	if err != nil {
+		t.Fatalf("parseFrontMatter returned an error: %v", err)
+	}
+
+	if metadata.Title != "Test post" || metadata.Date != "2026-10-08" || metadata.Category != "Testing" || metadata.Author != "Nyatt" || metadata.Slug != "test-post" {
+		t.Fatalf("unexpected metadata: %+v", metadata)
+	}
+	if string(body) != "# Test heading" {
+		t.Fatalf("unexpected body: %q", body)
+	}
+}
+
+func TestRenderMarkdownStripsFrontMatter(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "post.md")
+	source := []byte("---\ntitle: Hidden metadata\ndate: 2026-10-08\ncategory: Testing\nauthor: Nyatt\nslug: test-post\n---\n\n# Visible heading")
+	if err := os.WriteFile(path, source, 0o600); err != nil {
+		t.Fatalf("write Markdown: %v", err)
+	}
+
+	got, err := renderMarkdown(path)
+	if err != nil {
+		t.Fatalf("renderMarkdown returned an error: %v", err)
+	}
+
+	if strings.Contains(string(got), "Hidden metadata") {
+		t.Errorf("rendered Markdown contained front matter: %s", got)
+	}
+	if !strings.Contains(string(got), "Visible heading") {
+		t.Errorf("rendered Markdown did not contain the article body: %s", got)
+	}
+}
+
 func TestHomeRendersFullLayout(t *testing.T) {
 	recorder := httptest.NewRecorder()
 	request := httptest.NewRequest(http.MethodGet, "/", nil)
@@ -39,7 +75,14 @@ func TestHomeRendersFullLayout(t *testing.T) {
 	}
 
 	body := recorder.Body.String()
-	for _, want := range []string{"<!DOCTYPE html>", "<main id=\"content\">", "class=\"article\"", "Containers on Linux"} {
+	for _, want := range []string{
+		"<!DOCTYPE html>",
+		"<main id=\"content\">",
+		"class=\"article\"",
+		"Containers on Linux",
+		`class="article-category">Containers`,
+		`class="article-meta">2026-10-07 by Nyatt`,
+	} {
 		if !strings.Contains(body, want) {
 			t.Errorf("full page did not contain %q", want)
 		}

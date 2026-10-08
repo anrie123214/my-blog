@@ -1,3 +1,11 @@
+---
+title: Containers on Linux: Namespaces, User Namespaces, and Cgroups
+date: 2026-10-07
+category: Containers
+author: Nyatt
+slug: namespaces-and-cgroups
+---
+
 ## **Containers on Linux: Namespaces, User Namespaces, and Cgroups** 
 
 When I first started looking at containers, although I had some experience setting them up for personal use cases before, I found it hard to connect all the technological terms and concepts. Thankfully, I ended up with a somewhat good knowledge base and am writing this to share my findings. For the first one, let us answer some simple questions about Namespaces and Cgroups: 
@@ -137,4 +145,3 @@ we can think:
 - docker run nginx 
 
 **Containers are indeed magic. They enabled Linux isolation and resource-control mechanisms to be packaged into a convenient developer experience that can be interacted through a single command.** 
-
