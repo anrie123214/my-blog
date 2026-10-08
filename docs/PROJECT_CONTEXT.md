@@ -59,9 +59,11 @@ The `.site-header` is sticky and hides while scrolling down, then returns while 
 
 ## Next steps
 
-- Turn `/posts` into a generated article list using post front matter.
-- Add front matter to Part 2 and validate all posts during loading.
-- Add individual article routes using post slugs.
-- Add freelance and LinkedIn links to the About page.
-- Consider improving `http.ListenAndServe` error handling.
-- Update `document.title` when the page changes.
+1. Build a real home landing page with an introduction, a featured or latest
+   article, and clear links to the Posts and About pages.
+2. Remove the hard-coded homepage article path. Load Markdown posts from
+   `docs/blogs/`, sort them by date, use the latest post for the homepage, and
+   generate the `/posts` archive from front matter.
+3. Add clean article URLs using post slugs, such as
+   `/posts/container-isolation-p1`, and set descriptive browser tab titles for
+   the home, posts, article, and about pages.
