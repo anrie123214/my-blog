@@ -85,6 +85,23 @@
 		{{template "content" .}}
 	</main>
 
+	<footer class="site-footer">
+		<div class="footer-inner">
+			<div class="footer-brand">
+				<strong>Nyatt's Blog</strong>
+				<span>Writing, learning, and building useful things.</span>
+			</div>
+
+			<nav class="footer-nav" aria-label="Footer navigation">
+				<a href="/" hx-get="/" hx-target="#content" hx-swap="innerHTML" hx-push-url="true">Home</a>
+				<a href="/about" hx-get="/about" hx-target="#content" hx-swap="innerHTML" hx-push-url="true">About</a>
+				<a href="/posts" hx-get="/posts" hx-target="#content" hx-swap="innerHTML" hx-push-url="true">Posts</a>
+			</nav>
+
+			<small>© Nyatt's Blog</small>
+		</div>
+	</footer>
+
 </body>
 </html>
 {{end}}
