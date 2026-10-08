@@ -7,7 +7,7 @@ func newMux() http.Handler {
 	staticFiles := http.FileServer(http.Dir("./static"))
 	mux.Handle("/static/", http.StripPrefix("/static/", staticFiles))
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		post, err := loadPost("docs/blogs/NamespacesAndCgroups.md")
+		post, err := loadPost("docs/blogs/ContainersOnLinuxP1.md")
 		if err != nil {
 			http.Error(w, "Could not render Markdown", http.StatusInternalServerError)
 			return
