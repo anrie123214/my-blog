@@ -3,7 +3,7 @@ title: Containers on Linux: Isolation Mechanism - Part 1
 date: 2026-10-07
 category: Containers
 author: Nyatt
-slug: namespaces-and-cgroups
+slug: container-isolation-p1
 ---
 
 ## **Containers on Linux:**<br>**Isolation Mechanism - Part 1**

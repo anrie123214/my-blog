@@ -3,7 +3,7 @@ title: Containers on Linux: Isolation Mechanism - Part 2
 date: 2026-10-08
 category: Containers
 author: Nyatt
-slug: namespaces-and-cgroups
+slug: container-isolation-p2
 ---
 **Part 2: Docker, Privileges, and User Namespace Mapping** 
 
