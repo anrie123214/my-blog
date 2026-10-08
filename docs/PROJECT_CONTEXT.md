@@ -28,9 +28,10 @@ This is a small Go web app served at `http://localhost:8080`.
 
 ## Routes and HTMX
 
-- `/` renders `docs/blogs/ContainersOnLinuxP1.md` as the current featured Markdown article.
+- `/` renders the home landing page with the generated blog collection as featured posts.
 - `/about` renders the personal profile and freelance-oriented About page.
-- `/posts` is planned as a table-of-contents-style article list.
+- `/posts` renders a generated article list from the Markdown collection.
+- `/posts/{slug}` renders an individual Markdown article.
 - `/static/` serves static assets.
 
 Normal requests receive the full layout. Requests with `HX-Request: true` receive only the page content, which replaces `main#content`. Navigation uses `hx-push-url` and an HTMX `after:swap` hook so direct links, browser refreshes, and scroll position continue to work.
@@ -39,10 +40,10 @@ The `.site-header` is sticky and hides while scrolling down, then returns while 
 
 ## Content direction
 
-- Home currently recaps Part 1 of the Containers on Linux series, inspired by the Podman blog format.
+- Home has a centered welcome hero, a smooth scroll link, and generated featured post cards with a Read More link to the posts archive.
 - Article headers can show category, date, and author pills.
 - About should promote freelance work, LinkedIn, and related links.
-- Posts should list the Markdown articles in `docs/blogs/`, with individual article routes added later.
+- Posts are loaded from `docs/blogs/`, sorted by date, and linked through their front matter slugs.
 - Current articles include `ContainersOnLinuxP1.md` and `ContainersOnLinuxP2.md`.
 - The final visual design may change when a reference design is provided.
 
@@ -59,11 +60,6 @@ The `.site-header` is sticky and hides while scrolling down, then returns while 
 
 ## Next steps
 
-1. Build a real home landing page with an introduction, a featured or latest
-   article, and clear links to the Posts and About pages.
-2. Remove the hard-coded homepage article path. Load Markdown posts from
-   `docs/blogs/`, sort them by date, use the latest post for the homepage, and
-   generate the `/posts` archive from front matter.
-3. Add clean article URLs using post slugs, such as
-   `/posts/container-isolation-p1`, and set descriptive browser tab titles for
-   the home, posts, article, and about pages.
+- Add descriptive browser tab titles for the home, posts, article, and about pages.
+- Add freelance and LinkedIn links to the About page.
+- Consider improving `http.ListenAndServe` error handling.
