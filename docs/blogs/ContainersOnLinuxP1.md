@@ -6,7 +6,7 @@ author: Nyatt
 slug: namespaces-and-cgroups
 ---
 
-## **Containers on Linux:**<br>**Part 1 - Isolation Mechanism**
+## **Containers on Linux:**<br>**Isolation Mechanism - Part 1**
 
 When I first started looking at containers, although I had some experience setting them up for personal use cases before, I found it hard to connect all the terminologies and concepts. Thankfully, I ended up with a somewhat good knowledge base and am writing this to share my findings. For the first one, let us answer some simple questions about Namespaces and Cgroups: 
 

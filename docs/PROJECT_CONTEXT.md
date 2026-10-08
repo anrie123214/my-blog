@@ -1,6 +1,6 @@
 # Project Context
 
-Last updated: 2026-10-07
+Last updated: 2026-10-08
 
 ## Conversation and workflow context
 
@@ -17,35 +17,40 @@ Last updated: 2026-10-07
 This is a small Go web app served at `http://localhost:8080`.
 
 - `main.go` starts the server.
-- `render.go` defines routes, template rendering, and Markdown conversion with `gomarkdown`.
+- `render.go` defines HTTP routes and server startup.
+- `content.go` parses post front matter and loads post data.
+- `markdown.go` converts Markdown to HTML with `gomarkdown`.
+- `templates.go` renders full layouts or HTMX content fragments.
 - `templates/index.html` is the shared layout and keeps the header/navigation mounted.
 - `templates/home.html`, `about.html`, and `posts.html` provide swappable page content.
 - `static/css/style.css` contains the responsive layout and article styling.
-- `static/js/navbutton.js` handles the menu and theme toggle.
+- `static/js/navbutton.js` handles the menu and theme toggle; HTMX handles content navigation and scroll reset declaratively in the shared layout.
 
 ## Routes and HTMX
 
-- `/` renders the current featured Markdown article.
-- `/about` is planned as a personal name card and freelance profile.
+- `/` renders `docs/blogs/ContainersOnLinuxP1.md` as the current featured Markdown article.
+- `/about` renders the personal profile and freelance-oriented About page.
 - `/posts` is planned as a table-of-contents-style article list.
 - `/static/` serves static assets.
 
-Normal requests receive the full layout. Requests with `HX-Request: true` receive only the page content, which replaces `main#content`. Navigation uses `hx-push-url` so direct links and browser refreshes continue to work.
+Normal requests receive the full layout. Requests with `HX-Request: true` receive only the page content, which replaces `main#content`. Navigation uses `hx-push-url` and an HTMX `after:swap` hook so direct links, browser refreshes, and scroll position continue to work.
 
 The `.site-header` is sticky and hides while scrolling down, then returns while scrolling up. The mobile drawer locks page scrolling while open, includes a white close button, and closes when a link or outside area is clicked.
 
 ## Content direction
 
-- Home should recap the newest article, inspired by the Podman blog format.
+- Home currently recaps Part 1 of the Containers on Linux series, inspired by the Podman blog format.
 - Article headers can show category, date, and author pills.
 - About should promote freelance work, LinkedIn, and related links.
-- Posts should list Markdown articles, with individual article routes added later.
+- Posts should list the Markdown articles in `docs/blogs/`, with individual article routes added later.
+- Current articles include `ContainersOnLinuxP1.md` and `ContainersOnLinuxP2.md`.
 - The final visual design may change when a reference design is provided.
 
 ## Development decisions
 
 - Keep Go files at the repository root while the app remains small; do not add `src/` yet.
-- Store articles in `docs/blogs/` and render them with `gomarkdown/markdown`.
+- Store articles in `docs/blogs/` with YAML-like front matter for title, date, category, author, and slug, then render them with `gomarkdown/markdown`.
+- Keep post loading and Markdown conversion separate from route and template concerns.
 - Keep JavaScript minimal and use HTMX for page navigation.
 - Keep `.article-header` separate from the sticky `.site-header`.
 - Go tests live beside the code in `*_test.go` files.
@@ -54,8 +59,9 @@ The `.site-header` is sticky and hides while scrolling down, then returns while 
 
 ## Next steps
 
-- Turn `/posts` into a generated article list.
-- Add metadata handling for article title, date, author, and category.
-- Build the About name card and freelance links.
+- Turn `/posts` into a generated article list using post front matter.
+- Add front matter to Part 2 and validate all posts during loading.
+- Add individual article routes using post slugs.
+- Add freelance and LinkedIn links to the About page.
 - Consider improving `http.ListenAndServe` error handling.
 - Update `document.title` when the page changes.
