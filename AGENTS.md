@@ -7,6 +7,7 @@ This repository is a small Go web application:
 - `main.go` contains the HTTP server, routes, and template loading.
 - `templates/` contains HTML pages, including `index.html` and `about.html`.
 - `static/css/` contains stylesheets; `static/js/` contains browser scripts; and `static/images/` contains image assets.
+- `docs/PROJECT_CONTEXT.md` contains shared architecture notes, decisions, and roadmap context.
 - `go.mod` defines the Go module and language version.
 
 There is currently no dedicated test directory. Add Go tests beside the code they cover, using files named `*_test.go`.
@@ -42,6 +43,8 @@ Pull requests should explain the change, list verification commands and results,
 ## Security & Configuration Tips
 
 Do not commit credentials or local configuration. `.env` files are ignored; use environment variables for secrets and provide safe example values through documentation when needed.
+
+Shared project context belongs in `docs/PROJECT_CONTEXT.md`. Keep machine-specific Codex settings, personal preferences, credentials, and local paths outside the repository.
 
 ## Agent Change Approval
 

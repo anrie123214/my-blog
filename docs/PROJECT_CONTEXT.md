@@ -1,6 +1,16 @@
-# Codex Project Context
+# Project Context
 
 Last updated: 2026-10-07
+
+## Conversation and workflow context
+
+- This repository is intended to be worked on from both a laptop and a PC.
+- Shared project knowledge should be synchronized through Git.
+- `AGENTS.md` contains repository-specific instructions for Codex.
+- This file contains shared application architecture, decisions, roadmap notes, and relevant workflow context.
+- Machine-specific Codex settings, personal preferences, credentials, and local paths should remain outside the repository.
+- `TASK.md` contains the short project goal and requirements.
+- Before editing, renaming, deleting, staging, committing, or pushing repository files, obtain explicit user approval. That approval was given for the current documentation organization and push.
 
 ## Current architecture
 
@@ -40,7 +50,7 @@ The `.site-header` is sticky and hides while scrolling down, then returns while 
 - Keep `.article-header` separate from the sticky `.site-header`.
 - Go tests live beside the code in `*_test.go` files.
 - Run `gofmt`, `go build .`, and `go test ./...` after Go changes.
-- Ask for approval before editing, renaming, deleting, staging, or committing files. Read-only commands are okay without approval.
+- Ask for approval before editing, renaming, deleting, staging, or committing files.
 
 ## Next steps
 
