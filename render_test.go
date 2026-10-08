@@ -81,7 +81,7 @@ func TestHomeRendersFullLayout(t *testing.T) {
 		"class=\"article\"",
 		"Containers on Linux",
 		`class="article-category">Containers`,
-		`class="article-meta">2026-10-07 by Nyatt`,
+		`class="article-meta">2026-10-07 //// Nyatt`,
 	} {
 		if !strings.Contains(body, want) {
 			t.Errorf("full page did not contain %q", want)

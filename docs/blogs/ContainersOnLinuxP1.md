@@ -1,14 +1,14 @@
 ---
-title: Containers on Linux: Namespaces, User Namespaces, and Cgroups
+title: Containers on Linux: Part 1 - Isolation Mechanism
 date: 2026-10-07
 category: Containers
 author: Nyatt
 slug: namespaces-and-cgroups
 ---
 
-## **Containers on Linux: Namespaces, User Namespaces, and Cgroups** 
+## **Containers on Linux:**<br>**Part 1 - Isolation Mechanism**
 
-When I first started looking at containers, although I had some experience setting them up for personal use cases before, I found it hard to connect all the technological terms and concepts. Thankfully, I ended up with a somewhat good knowledge base and am writing this to share my findings. For the first one, let us answer some simple questions about Namespaces and Cgroups: 
+When I first started looking at containers, although I had some experience setting them up for personal use cases before, I found it hard to connect all the terminologies and concepts. Thankfully, I ended up with a somewhat good knowledge base and am writing this to share my findings. For the first one, let us answer some simple questions about Namespaces and Cgroups: 
 
 # **What can a Linux process see?** 
 
