@@ -166,6 +166,16 @@ func TestArticleRouteRendersPost(t *testing.T) {
 	if !strings.Contains(recorder.Body.String(), "Namespaces control what a process can see") {
 		t.Error("article route did not render the requested post")
 	}
+	body := recorder.Body.String()
+	for _, want := range []string{
+		"Newer post",
+		"Containers on Linux: Isolation Mechanism - Part 2",
+		"/posts/container-isolation-p2",
+	} {
+		if !strings.Contains(body, want) {
+			t.Errorf("article navigation did not contain %q", want)
+		}
+	}
 }
 
 func TestUnknownArticleReturnsNotFound(t *testing.T) {

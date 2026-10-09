@@ -42,9 +42,17 @@ func newMux() http.Handler {
 			return
 		}
 
-		for _, post := range posts {
+		for index, post := range posts {
 			if post.Slug == slug {
-				if err := renderTemplate(w, r, "article", post); err != nil {
+				article := articlePageData{pageData: post}
+				if index < len(posts)-1 {
+					article.Older = &posts[index+1]
+				}
+				if index > 0 {
+					article.Newer = &posts[index-1]
+				}
+
+				if err := renderTemplate(w, r, "article", article); err != nil {
 					http.Error(w, err.Error(), http.StatusInternalServerError)
 				}
 				return

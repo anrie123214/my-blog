@@ -3,6 +3,14 @@ const menuToggle = document.getElementById("menu-toggle");
 const mainNav = document.getElementById("main-nav");
 const menuClose = document.getElementById("menu-close");
 
+// Keep F5 as a full browser reload, but start the refreshed page at the top.
+const navigationEntry = performance.getEntriesByType("navigation")[0];
+if (navigationEntry?.type === "reload") {
+    window.addEventListener("pageshow", () => {
+        window.scrollTo(0, 0);
+    }, { once: true });
+}
+
 // Keep the menu state, accessibility attributes, and page scrolling synchronized.
 function setMenuOpen(isOpen) {
     mainNav.classList.toggle("open", isOpen);
@@ -44,6 +52,8 @@ const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.getElementById("theme-icon");
 const themeLabel = document.getElementById("theme-label");
 const savedTheme = localStorage.getItem("theme");
+const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+const initialTheme = savedTheme || (systemTheme.matches ? "dark" : "light");
 
 const moonIcon = `
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -64,7 +74,7 @@ const sunIcon = `
         M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
 </svg>`;
 
-if (savedTheme === "dark") {
+if (initialTheme === "dark") {
     document.body.classList.add("dark-mode");
 }
 
@@ -85,6 +95,15 @@ themeToggle.addEventListener("click", () => {
     const darkMode = document.body.classList.toggle("dark-mode");
 
     localStorage.setItem("theme", darkMode ? "dark" : "light");
+    updateThemeButton();
+});
+
+systemTheme.addEventListener("change", (event) => {
+    if (localStorage.getItem("theme") !== null) {
+        return;
+    }
+
+    document.body.classList.toggle("dark-mode", event.matches);
     updateThemeButton();
 });
 

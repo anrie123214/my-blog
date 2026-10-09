@@ -9,7 +9,7 @@
 	<script src="/static/js/navbutton.js" defer></script>
 	<title>Nyatt's blog</title>
 </head>
-<body hx-on::after:swap="window.scrollTo(0, 0)">
+<body>
 	<header class="site-header">
 		<a href="/" class="logo">
 			<img src="/static/images/logo.png" alt="Nyatt's blog">
@@ -38,7 +38,7 @@
 			<a href="/"
 			   hx-get="/"
 			   hx-target="#content"
-			   hx-swap="innerHTML"
+			   hx-swap="innerHTML show:top"
 			   hx-push-url="true">
 				<strong>Home</strong>
 			</a>
@@ -46,7 +46,7 @@
 			<a href="/about"
 			   hx-get="/about"
 			   hx-target="#content"
-			   hx-swap="innerHTML"
+			   hx-swap="innerHTML show:top"
 			   hx-push-url="true">
 				<strong>About</strong>
 			</a>
@@ -54,8 +54,8 @@
 			<a href="/posts"
 			   hx-get="/posts"
 			   hx-target="#content"
-				hx-swap="innerHTML"
-				hx-push-url="true">
+			   hx-swap="innerHTML show:top"
+			   hx-push-url="true">
 				<strong>Posts</strong>
 			</a>
 
@@ -93,9 +93,9 @@
 			</div>
 
 			<nav class="footer-nav" aria-label="Footer navigation">
-				<a href="/" hx-get="/" hx-target="#content" hx-swap="innerHTML" hx-push-url="true">Home</a>
-				<a href="/about" hx-get="/about" hx-target="#content" hx-swap="innerHTML" hx-push-url="true">About</a>
-				<a href="/posts" hx-get="/posts" hx-target="#content" hx-swap="innerHTML" hx-push-url="true">Posts</a>
+				<a href="/" hx-get="/" hx-target="#content" hx-swap="innerHTML show:top" hx-push-url="true">Home</a>
+				<a href="/about" hx-get="/about" hx-target="#content" hx-swap="innerHTML show:top" hx-push-url="true">About</a>
+				<a href="/posts" hx-get="/posts" hx-target="#content" hx-swap="innerHTML show:top" hx-push-url="true">Posts</a>
 			</nav>
 
 			<small>© Nyatt's Blog</small>

@@ -8,5 +8,37 @@
 	<div class="article-content">
 		{{.Markdown}}
 	</div>
+
+	<nav class="article-navigation" aria-label="Article navigation">
+		{{if .Older}}
+		<a class="article-navigation-link article-navigation-older"
+			href="/posts/{{.Older.Slug}}"
+			hx-get="/posts/{{.Older.Slug}}"
+			hx-target="#content"
+			hx-swap="innerHTML show:top"
+			hx-push-url="true">
+			<span class="article-navigation-arrow" aria-hidden="true">←</span>
+			<span>
+				<small>Older post</small>
+				<strong>{{.Older.Title}}</strong>
+			</span>
+		</a>
+		{{end}}
+
+		{{if .Newer}}
+		<a class="article-navigation-link article-navigation-newer"
+			href="/posts/{{.Newer.Slug}}"
+			hx-get="/posts/{{.Newer.Slug}}"
+			hx-target="#content"
+			hx-swap="innerHTML show:top"
+			hx-push-url="true">
+			<span>
+				<small>Newer post</small>
+				<strong>{{.Newer.Title}}</strong>
+			</span>
+			<span class="article-navigation-arrow" aria-hidden="true">→</span>
+		</a>
+		{{end}}
+	</nav>
 </article>
 {{end}}

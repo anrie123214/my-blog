@@ -18,6 +18,12 @@ type pageData struct {
 	Slug     string
 }
 
+type articlePageData struct {
+	pageData
+	Older *pageData
+	Newer *pageData
+}
+
 type postMetadata struct {
 	Title    string
 	Date     string

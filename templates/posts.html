@@ -14,14 +14,14 @@
 				<h2><a href="/posts/{{.Slug}}"
 					hx-get="/posts/{{.Slug}}"
 					hx-target="#content"
-					hx-swap="innerHTML"
+					hx-swap="innerHTML show:top"
 					hx-push-url="true">{{.Title}}</a></h2>
 				<p class="post-list-meta">{{.Date}} //// {{.Author}}</p>
 			</div>
 			<a class="post-list-link" href="/posts/{{.Slug}}"
 				hx-get="/posts/{{.Slug}}"
 				hx-target="#content"
-				hx-swap="innerHTML"
+				hx-swap="innerHTML show:top"
 				hx-push-url="true">Read article <span aria-hidden="true">→</span></a>
 		</article>
 		{{else}}

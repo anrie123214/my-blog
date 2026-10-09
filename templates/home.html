@@ -30,14 +30,14 @@
 					<a href="/posts/{{.Slug}}"
 						hx-get="/posts/{{.Slug}}"
 						hx-target="#content"
-						hx-swap="innerHTML"
+						hx-swap="innerHTML show:top"
 						hx-push-url="true">{{.Title}}</a>
 				</h3>
 				<p class="home-post-meta">{{.Date}} //// {{.Author}}</p>
 				<a class="home-post-link" href="/posts/{{.Slug}}"
 					hx-get="/posts/{{.Slug}}"
 					hx-target="#content"
-					hx-swap="innerHTML"
+					hx-swap="innerHTML show:top"
 					hx-push-url="true">Read article <span aria-hidden="true">→</span></a>
 			</article>
 			{{else}}
@@ -50,7 +50,7 @@
 				<a class="home-post-link" href="/posts"
 					hx-get="/posts"
 					hx-target="#content"
-					hx-swap="innerHTML"
+					hx-swap="innerHTML show:top"
 					hx-push-url="true">Read More <span aria-hidden="true">→</span></a>
 			</article>
 		</div>

@@ -63,3 +63,13 @@ The `.site-header` is sticky and hides while scrolling down, then returns while 
 - Add descriptive browser tab titles for the home, posts, article, and about pages.
 - Add freelance and LinkedIn links to the About page.
 - Consider improving `http.ListenAndServe` error handling.
+
+## Work log — 2026-10-09
+
+- Added older/newer navigation to article pages using server-selected neighboring posts.
+- Added HTMX navigation attributes and responsive styling for article navigation buttons.
+- Applied `show:top` to all HTMX page and article links so swapped content returns to the top of the target content area.
+- Moved the home welcome section toward the top of the page instead of vertically centering it.
+- Kept F5 as a full browser reload and added reload-specific scroll reset behavior so refreshed pages start at the top.
+- Added browser `prefers-color-scheme` detection for the initial theme, with explicit `localStorage` choices taking priority and system theme changes applied when no manual choice exists.
+- Current verification note: `gofmt` and `git diff --check` pass. Go build/test verification may require writable Go caches and network access for the Markdown dependency in the development environment.
