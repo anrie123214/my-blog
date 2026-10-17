@@ -1,6 +1,6 @@
 
 # Stage 1: Build the Go application
-FROM golang:1.25-alpine AS builder
+FROM golang:1.26.5-alpine AS builder
 
 WORKDIR /src
 
