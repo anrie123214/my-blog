@@ -1,0 +1,18 @@
+
+# Git metadata
+.git/
+
+# Secrets and local environment configuration
+.env
+.env.*
+!.env.example
+
+# Go test artifacts
+*.test
+coverage.out
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
