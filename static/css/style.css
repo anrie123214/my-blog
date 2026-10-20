@@ -33,9 +33,10 @@ html {
     --article-code-background: #20242c;
     --footer-background: #e9eef4;
     --footer-border: #d5dde7;
+    --read-more-hover: #000000;
 }
 
-/* These values become active when JavaScript adds .dark-mode to <body>. */
+/* dark mode */
 body.dark-mode {
     --page-background: #121820;
     --page-text: #eeeeee;
@@ -321,8 +322,9 @@ main {
 }
 
 .home-scroll-link:hover {
-    color: var(--article-meta-background);
+    color: var(--label-accent);
 }
+
 
 .home-scroll-arrow {
     font-size: 2rem;
@@ -411,7 +413,7 @@ main {
 }
 
 .home-post-card-more .home-post-link:hover {
-    color: var(--page-text);
+    color: var(--read-more-hover);
 }
 
 @media (max-width: 700px) {
