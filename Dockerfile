@@ -1,6 +1,6 @@
 
 # Stage 1: Build the Go application
-FROM golang:1.26.5-alpine AS builder
+FROM quay.io/projectquay/golang:1.27 AS builder
 
 WORKDIR /src
 
