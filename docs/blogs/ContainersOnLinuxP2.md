@@ -7,7 +7,6 @@ slug: container-isolation-p2
 ---
 ## **Containers on Linux: Isolation Mechanism - Part 2**
 
-
 # **What sits behind Docker Engine?**
 
 In **Part 1** , we learned that containers are built from Linux kernel features such as namespaces and cgroups. While these mechanisms provide isolation and resource control, interacting with them directly would be complex and inconvenient. 

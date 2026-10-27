@@ -7,8 +7,9 @@ slug: container-isolation-p1
 ---
 
 ## **Containers on Linux:**<br>**Isolation Mechanism - Part 1**
+# **Firstly**
 
-When I first started looking at containers, although I had some experience setting them up for personal use cases before, I found it hard to connect all the terminologies and concepts. Thankfully, I ended up with a somewhat good knowledge base and am writing this to share my findings. For the first one, let us answer some simple questions about Namespaces and Cgroups: 
+When I started looking at containers, although I had some experience setting them up for personal use cases before, I found it hard to connect all the terminologies and concepts. Thankfully, I ended up with a somewhat good knowledge base and am writing this to share my findings. For the first one, let us answer some simple questions about Namespaces and Cgroups: 
 
 # **What can a Linux process see?** 
 
